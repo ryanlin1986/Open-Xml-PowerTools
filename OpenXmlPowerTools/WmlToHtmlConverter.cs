@@ -2163,18 +2163,18 @@ namespace OpenXmlPowerTools
                     // Given the changes we've made elsewhere, though, this is not required
                     // for the first tab at least. We could also enhance that other change
                     // to deal with all tabs.
-                    //var runContainingTabToReplace = currentElement.Parent;
-                    //var paragraphForRun = runContainingTabToReplace.Ancestors(W.p).First();
-                    //var fontNameAtt = runContainingTabToReplace.Attribute(PtOpenXml.FontName) ??
-                    //                  paragraphForRun.Attribute(PtOpenXml.FontName);
-                    //var languageTypeAtt = runContainingTabToReplace.Attribute(PtOpenXml.LanguageType) ??
-                    //                      paragraphForRun.Attribute(PtOpenXml.LanguageType);
+                    var runContainingTabToReplace = currentElement.Parent;
+                    var paragraphForRun = runContainingTabToReplace.Ancestors(W.p).First();
+                    var fontNameAtt = runContainingTabToReplace.Attribute(PtOpenXml.FontName) ??
+                                      paragraphForRun.Attribute(PtOpenXml.FontName);
+                    var languageTypeAtt = runContainingTabToReplace.Attribute(PtOpenXml.LanguageType) ??
+                                          paragraphForRun.Attribute(PtOpenXml.LanguageType);
 
-                    //var dummyRun3 = new XElement(W.r, fontNameAtt, languageTypeAtt,
-                    //    runContainingTabToReplace.Elements(W.rPr),
-                    //    currentElement);
-                    //var widthOfText = CalcWidthOfRunInTwips(dummyRun3);
-                    const int widthOfText = 0;
+                    var dummyRun3 = new XElement(W.r, fontNameAtt, languageTypeAtt,
+                        runContainingTabToReplace.Elements(W.rPr),
+                        currentElement);
+                    var widthOfText = CalcWidthOfRunInTwips(dummyRun3);
+                    //const int widthOfText = 0;
                     currentElement.Add(new XAttribute(PtOpenXml.TabWidth,
                         string.Format(NumberFormatInfo.InvariantInfo, "{0:0.000}", (decimal) widthOfText/1440m)));
                     twipCounter += widthOfText;
