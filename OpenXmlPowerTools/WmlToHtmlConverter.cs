@@ -2175,8 +2175,8 @@ namespace OpenXmlPowerTools
                         currentElement);
                     if (fontNameAtt == null)
                     {
-                        var fontsNode = currentElement.Parent.DescendantNodes().OfType<XElement>().Where(w=>w.Name.LocalName== "rPr").First().DescendantNodes().OfType<XElement>().Where(w => w.Name.LocalName == "rFonts").FirstOrDefault();
-                        dummyRun3.SetAttributeValue(PtOpenXml.FontName, fontsNode.Attributes().Where(w => w.Name.LocalName == "ascii").First().Value);
+                        var fontsNode = currentElement.Parent.DescendantNodes().OfType<XElement>().Where(w => w.Name.LocalName == "rPr").First().DescendantNodes().OfType<XElement>().Where(w => w.Name.LocalName == "rFonts").FirstOrDefault();
+                        dummyRun3.SetAttributeValue(PtOpenXml.FontName, fontsNode.Attributes().Where(w => w.Name.LocalName == "cs").FirstOrDefault()?.Value ?? fontsNode.Attributes().Where(w => w.Name.LocalName == "ascii").First().Value);
                     }
                     var widthOfText = CalcWidthOfRunInTwips(dummyRun3);
                     //const int widthOfText = 0;
